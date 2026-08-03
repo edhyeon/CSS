@@ -5,16 +5,37 @@
     <meta name="viewport" content="width=device-width" />
     <title>light dark</title>
     <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
       :root {
         color-scheme: light dark;
         --primary-color: light dark(#000, #fff);
+        --primary-background: light dark(#121212, #fff);
       }
       body {
+        height: 100vh;
+      }
+      main {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         color: var(--primary-color);
+        background: var(--primary-background);
       }
     </style>
   </head>
   <body>
-    <main>light dark</main>
+    <main>
+      <p>
+        --primary-color: light dark(#000, #fff);<br />
+        --primary-background: light dark(#121212, #fff);<br /><br />
+
+        color: var(--primary-color);<br />
+        background: var(--primary-background);
+      </p>
+    </main>
   </body>
 </html>
