@@ -9,13 +9,20 @@
         padding: 0;
         margin: 0;
       }
-      :root {
-        color-scheme: light dark;
-        --primary-color: light dark(#000, #fff);
-        --primary-background: light dark(#121212, #fff);
-      }
       body {
         height: 100vh;
+      }
+      :root {
+        color-scheme: light-dark;
+        --primary-color: light-dark(#ebebeb, #121212);
+        --primary-background: light-dark(#121212, #fff);
+        --button-background: light-dark(#ccc, #bbb);
+      }
+      [data-theme="light"] {
+        color-scheme: light;
+      }
+      [data-theme="dark"] {
+        color-scheme: dark;
       }
       main {
         height: 100%;
@@ -25,10 +32,21 @@
         color: var(--primary-color);
         background: var(--primary-background);
       }
+      button {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 10px;
+        border-radius: 8px;
+        background: var(--button-background);
+        border: 0;
+      }
     </style>
   </head>
   <body>
     <main>
+      <button>light dark</button>
       <p>
         --primary-color: light dark(#000, #fff);<br />
         --primary-background: light dark(#121212, #fff);<br /><br />
