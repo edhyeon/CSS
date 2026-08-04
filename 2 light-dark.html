@@ -89,37 +89,39 @@
     </main>
     <script>
       let thisTheme = "";
-      let isDark = window.matchMedia("(prefers-color-scheme:dark)").matches;
+      let isDark = window.matchMedia("(prefers-color-scheme:dark)").matches; // true : false
       let mediaQuery = window.matchMedia("(prefers-color-scheme:dark)");
       const htmlTag = document.querySelector("html");
       const btn = document.querySelector("#theme-btn");
       const btnPressed = document.querySelector("#btnPressed");
 
-      // 시스템의 라이트/다크 테마 감지 후 테마 데이터 값 변경
+      // # 시스템의 라이트/다크 테마 감지 후 테마 데이터 값 변경
       function setThemeMode(isDark) {
         thisTheme = isDark ? "dark" : "light";
         htmlTag.dataset.theme = thisTheme;
-        if (isDark) {
-          btn.ariaPressed = true;
-        } else {
-          btn.ariaPressed = false;
-        }
+        btn.setAttribute("aria-pressed", isDark ? "true" : "false");
         btnPressed.textContent = btn.ariaPressed;
       }
 
-      // 페이지 접속 시 테마 확인
+      // # 페이지 접속 시 테마 확인
       setThemeMode(isDark);
 
-      // 사용자가 테마 변경 시
-      mediaQuery.addEventListener("change", function () {
-        isDark = window.matchMedia("(prefers-color-scheme:dark)").matches;
-        setThemeMode(isDark);
+      // # 사용자가 테마 변경 시
+      mediaQuery.addEventListener("change", function (e) {
+        // 이벤트 객체 e.matches에 변경된 결과(true/false)가 바로 들어있습니다.
+        // e.matches --> true / false
+        if (!localStorage.getItem("selectedTheme")) {
+          setThemeMode(e.matches);
+        }
       });
 
-      // 버튼 클릭하면 테마 변경
+      // # 버튼 클릭 - 테마 변경보다 우선
       btn.addEventListener("click", function () {
         isDark = !isDark;
         setThemeMode(isDark);
+
+        // 로컬스토리지 저장
+        localStorage.setItem("selectedTheme", thisTheme);
       });
     </script>
   </body>
