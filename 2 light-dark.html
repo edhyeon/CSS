@@ -90,9 +90,12 @@
     <script>
       let thisTheme = "";
       let isDark = window.matchMedia("(prefers-color-scheme:dark)").matches;
+      let isModeChanged = window.matchMedia("(prefers-color-scheme:dark)");
       const htmlTag = document.querySelector("html");
       const btn = document.querySelector("#theme-btn");
       const btnPressed = document.querySelector("#btnPressed");
+
+      console.log(isModeChanged);
 
       // 시스템의 라이트/다크 테마 감지 후 테마 데이터 값 변경
       function setThemeMode(isDark) {
@@ -106,7 +109,13 @@
         btnPressed.textContent = btn.ariaPressed;
       }
 
+      // 페이지 접속 시 테마 확인
       setThemeMode(isDark);
+
+      // 사용자가 테마 변경 시
+      isModeChanged.addEventListener("change", function () {
+        setThemeMode(isDark);
+      });
 
       // 버튼 클릭하면 테마 변경
       btn.addEventListener("click", function () {
