@@ -106,6 +106,8 @@
         btnPressed.textContent = btn.ariaPressed;
       }
 
+      setThemeMode(isDark);
+
       // 버튼 클릭하면 테마 변경
       btn.addEventListener("click", function () {
         isDark = !isDark;
